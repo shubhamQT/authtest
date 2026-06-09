@@ -1,0 +1,243 @@
+{
+  "id": "7f6e9208-00aa-4978-bb68-f3bf0ca5a06c",
+  "requirementId": "e2c92386-6845-43b3-a785-231aec138c14",
+  "model": "gpt-4.1",
+  "createdAt": "2026-06-09T11:03:06.450Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "Create Lead - E2E",
+    "cases": [
+      {
+        "id": "create-lead-missing-lastname",
+        "title": "Attempt to create Lead without Last Name and verify validation error",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step-1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Salesforce Leads tab",
+            "value": "https://orgfarm-cdb7bbd1fc-dev-ed.develop.my.salesforce.com/lightning/o/Lead/list"
+          },
+          {
+            "id": "step-2",
+            "action": "tap",
+            "targetDescription": "Click on the 'New' button",
+            "locatorHint": "button[title='New']"
+          },
+          {
+            "id": "step-3",
+            "action": "fill",
+            "targetDescription": "Enter First Name",
+            "locatorHint": "input[name='FirstName']",
+            "value": "John"
+          },
+          {
+            "id": "step-4",
+            "action": "fill",
+            "targetDescription": "Enter Company",
+            "locatorHint": "input[name='Company']",
+            "value": "ABC Technologies"
+          },
+          {
+            "id": "step-5",
+            "action": "tap",
+            "targetDescription": "Click on the 'Save' button",
+            "locatorHint": "button[title='Save']"
+          },
+          {
+            "id": "step-6",
+            "action": "assertVisible",
+            "targetDescription": "Verify validation error for Last Name",
+            "locatorHint": ".errorsList li"
+          },
+          {
+            "id": "step-7",
+            "action": "assertContainsText",
+            "targetDescription": "Check error message mentions Last Name",
+            "locatorHint": ".errorsList li",
+            "assertion": "Last Name"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression",
+          "lead"
+        ]
+      },
+      {
+        "id": "create-lead-missing-company",
+        "title": "Attempt to create Lead without Company and verify validation error",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step-1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Salesforce Leads tab",
+            "value": "https://orgfarm-cdb7bbd1fc-dev-ed.develop.my.salesforce.com/lightning/o/Lead/list"
+          },
+          {
+            "id": "step-2",
+            "action": "tap",
+            "targetDescription": "Click on the 'New' button",
+            "locatorHint": "button[title='New']"
+          },
+          {
+            "id": "step-3",
+            "action": "fill",
+            "targetDescription": "Enter First Name",
+            "locatorHint": "input[name='FirstName']",
+            "value": "John"
+          },
+          {
+            "id": "step-4",
+            "action": "fill",
+            "targetDescription": "Enter Last Name",
+            "locatorHint": "input[name='LastName']",
+            "value": "Smith"
+          },
+          {
+            "id": "step-5",
+            "action": "tap",
+            "targetDescription": "Click on the 'Save' button",
+            "locatorHint": "button[title='Save']"
+          },
+          {
+            "id": "step-6",
+            "action": "assertVisible",
+            "targetDescription": "Verify validation error for Company",
+            "locatorHint": ".errorsList li"
+          },
+          {
+            "id": "step-7",
+            "action": "assertContainsText",
+            "targetDescription": "Check error message mentions Company",
+            "locatorHint": ".errorsList li",
+            "assertion": "Company"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression",
+          "lead"
+        ]
+      },
+      {
+        "id": "lead-default-status-check",
+        "title": "Verify Lead Status is set to 'Open - Not Contacted' after creation",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step-1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Salesforce Leads tab",
+            "value": "https://orgfarm-cdb7bbd1fc-dev-ed.develop.my.salesforce.com/lightning/o/Lead/list"
+          },
+          {
+            "id": "step-2",
+            "action": "tap",
+            "targetDescription": "Click on the 'New' button",
+            "locatorHint": "button[title='New']"
+          },
+          {
+            "id": "step-3",
+            "action": "fill",
+            "targetDescription": "Enter Last Name",
+            "locatorHint": "input[name='LastName']",
+            "value": "Smith"
+          },
+          {
+            "id": "step-4",
+            "action": "fill",
+            "targetDescription": "Enter Company",
+            "locatorHint": "input[name='Company']",
+            "value": "ABC Technologies"
+          },
+          {
+            "id": "step-5",
+            "action": "tap",
+            "targetDescription": "Click on the 'Save' button",
+            "locatorHint": "button[title='Save']"
+          },
+          {
+            "id": "step-6",
+            "action": "assertText",
+            "targetDescription": "Verify Lead Status is 'Open - Not Contacted'",
+            "locatorHint": "span[data-field='Status']",
+            "assertion": "Open - Not Contacted"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression",
+          "lead"
+        ]
+      },
+      {
+        "id": "redirect-to-lead-record-after-save",
+        "title": "Verify user is redirected to Lead record page after successful creation",
+        "priority": "P1",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "step-1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Salesforce Leads tab",
+            "value": "https://orgfarm-cdb7bbd1fc-dev-ed.develop.my.salesforce.com/lightning/o/Lead/list"
+          },
+          {
+            "id": "step-2",
+            "action": "tap",
+            "targetDescription": "Click on the 'New' button",
+            "locatorHint": "button[title='New']"
+          },
+          {
+            "id": "step-3",
+            "action": "fill",
+            "targetDescription": "Enter Last Name",
+            "locatorHint": "input[name='LastName']",
+            "value": "Smith"
+          },
+          {
+            "id": "step-4",
+            "action": "fill",
+            "targetDescription": "Enter Company",
+            "locatorHint": "input[name='Company']",
+            "value": "ABC Technologies"
+          },
+          {
+            "id": "step-5",
+            "action": "tap",
+            "targetDescription": "Click on the 'Save' button",
+            "locatorHint": "button[title='Save']"
+          },
+          {
+            "id": "step-6",
+            "action": "assertVisible",
+            "targetDescription": "Verify Lead record page is displayed",
+            "locatorHint": "h1[title='Smith']"
+          }
+        ],
+        "tags": [
+          "@e2e",
+          "@regression",
+          "lead"
+        ]
+      }
+    ]
+  }
+}

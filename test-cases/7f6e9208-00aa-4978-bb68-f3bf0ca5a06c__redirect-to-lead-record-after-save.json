@@ -1,0 +1,60 @@
+{
+  "id": "redirect-to-lead-record-after-save",
+  "testPlanId": "7f6e9208-00aa-4978-bb68-f3bf0ca5a06c",
+  "requirementId": "e2c92386-6845-43b3-a785-231aec138c14",
+  "suiteName": "Create Lead - E2E",
+  "case": {
+    "id": "redirect-to-lead-record-after-save",
+    "title": "Verify user is redirected to Lead record page after successful creation",
+    "priority": "P1",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step-1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to Salesforce Leads tab",
+        "value": "https://orgfarm-cdb7bbd1fc-dev-ed.develop.my.salesforce.com/lightning/o/Lead/list"
+      },
+      {
+        "id": "step-2",
+        "action": "tap",
+        "targetDescription": "Click on the 'New' button",
+        "locatorHint": "button[title='New']"
+      },
+      {
+        "id": "step-3",
+        "action": "fill",
+        "targetDescription": "Enter Last Name",
+        "locatorHint": "input[name='LastName']",
+        "value": "Smith"
+      },
+      {
+        "id": "step-4",
+        "action": "fill",
+        "targetDescription": "Enter Company",
+        "locatorHint": "input[name='Company']",
+        "value": "ABC Technologies"
+      },
+      {
+        "id": "step-5",
+        "action": "tap",
+        "targetDescription": "Click on the 'Save' button",
+        "locatorHint": "button[title='Save']"
+      },
+      {
+        "id": "step-6",
+        "action": "assertVisible",
+        "targetDescription": "Verify Lead record page is displayed",
+        "locatorHint": "h1[title='Smith']"
+      }
+    ],
+    "tags": [
+      "@e2e",
+      "@regression",
+      "lead"
+    ]
+  }
+}
